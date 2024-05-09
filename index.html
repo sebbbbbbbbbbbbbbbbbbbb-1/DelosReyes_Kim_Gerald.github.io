@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <link rel="stylesheet" href="style.css"> <!-- Linking an external CSS file -->
+</head>
+<body>
+   
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"> <!-- Div to contain the chat messages -->
+            <div class="chat-message bot-message">
+                Hello, Feel Free to ask about me. <br>
+                <br>
+                Just Type This Word if you want to ask : <br>
+                 
+
+                - "who are you?" <br>
+                - "how old are you?"<br>
+                - "where do you live?" <br>
+                - "why are you here?" <br>
+                - "how are you?"<br>
+                - "what is your hobby?"<br> <!-- Added this line -->
+            </div>
+        </div>
+        <div class="input-container"> <!-- Div to contain the input field and send button -->
+            <input type="text" id="user-input" class="user-input" placeholder="Type your message..."> <!-- Input field for user input -->
+            <button onclick="sendMessage()" class="send-button">Send</button> <!-- Button to send the message -->
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("user-input").value; // Getting the user's input
+            var chatBox = document.getElementById("chat-box"); // Getting the chat box container
+
+            var userMessage = document.createElement("div"); // Creating a new div for user message
+            userMessage.classList.add("chat-message", "user-message"); // Adding classes to style the message
+            userMessage.innerHTML = userInput; // Setting the content of the user message
+            chatBox.appendChild(userMessage); // Appending the user message to the chat box
+
+            var botResponse = getBotResponse(userInput); // Getting the bot's response based on user input
+
+            var botMessage = document.createElement("div"); // Creating a new div for bot message
+            botMessage.classList.add("chat-message", "bot-message"); // Adding classes to style the message
+            botMessage.innerHTML = botResponse; // Setting the content of the bot message
+            chatBox.appendChild(botMessage); // Appending the bot message to the chat box
+
+            chatBox.scrollTop = chatBox.scrollHeight; // Scrolling to the bottom of the chat box
+            
+            document.getElementById("user-input").value = ""; // Clearing the user input field
+        }
+
+        function getBotResponse(question) {
+            if (question.toLowerCase().includes("who are you?")) { // Checking if the user asked "who are you?"
+                return "I am Kim Gerald Delos Reyes."; // Providing the bot's response
+            } else if (question.toLowerCase().includes("how old are you?")) { // Checking if the user asked "how old are you?"
+                return "As of Today i'm Sweet 16"; // Providing the bot's response
+            } else if (question.toLowerCase().includes("where do you live?")) { // Checking if the user asked "where do you live?"
+                return "I Live in Ibaan Batangas and 3 others country!"; // Providing the bot's response
+            } else if (question.toLowerCase().includes("how are you?")) { // Checking if the user asked "how are you?"
+                return "I'm Fine Thankyou!"; // Providing the bot's response
+            } else if (question.toLowerCase().includes("why are you here?")) { 
+                return "Because I'd like to show you guys what I've finished this week. Amen? AMEN!";
+            } else if (question.toLowerCase().includes("what is your hobby?")) { 
+                return "playing online games like DOTA 2, Crossfire, BANOrant and others";
+            } else {
+                return "a. aaaa . aahmm . niks kuwestyon"; // Default response for unrecognized questions
+            }
+        }
+    </script>
+</body>
+</html>
